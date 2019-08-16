@@ -16,10 +16,16 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  category: (where?: CategoryWhereInput) => Promise<boolean>;
+  comment: (where?: CommentWhereInput) => Promise<boolean>;
+  externalResource: (where?: ExternalResourceWhereInput) => Promise<boolean>;
+  review: (where?: ReviewWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  video: (where?: VideoWhereInput) => Promise<boolean>;
+  vote: (where?: VoteWhereInput) => Promise<boolean>;
 }
 
-export interface Node {}
+export interface Node { }
 
 export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
 
@@ -38,6 +44,84 @@ export interface Prisma {
    * Queries
    */
 
+  category: (where: CategoryWhereUniqueInput) => CategoryNullablePromise;
+  categories: (args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Category>;
+  categoriesConnection: (args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => CategoryConnectionPromise;
+  comment: (where: CommentWhereUniqueInput) => CommentNullablePromise;
+  comments: (args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Comment>;
+  commentsConnection: (args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => CommentConnectionPromise;
+  externalResource: (
+    where: ExternalResourceWhereUniqueInput
+  ) => ExternalResourceNullablePromise;
+  externalResources: (args?: {
+    where?: ExternalResourceWhereInput;
+    orderBy?: ExternalResourceOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ExternalResource>;
+  externalResourcesConnection: (args?: {
+    where?: ExternalResourceWhereInput;
+    orderBy?: ExternalResourceOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ExternalResourceConnectionPromise;
+  review: (where: ReviewWhereUniqueInput) => ReviewNullablePromise;
+  reviews: (args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Review>;
+  reviewsConnection: (args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ReviewConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -57,12 +141,120 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => UserConnectionPromise;
+  video: (where: VideoWhereUniqueInput) => VideoNullablePromise;
+  videos: (args?: {
+    where?: VideoWhereInput;
+    orderBy?: VideoOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Video>;
+  videosConnection: (args?: {
+    where?: VideoWhereInput;
+    orderBy?: VideoOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => VideoConnectionPromise;
+  vote: (where: VoteWhereUniqueInput) => VoteNullablePromise;
+  votes: (args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Vote>;
+  votesConnection: (args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => VoteConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
+  createCategory: (data: CategoryCreateInput) => CategoryPromise;
+  updateCategory: (args: {
+    data: CategoryUpdateInput;
+    where: CategoryWhereUniqueInput;
+  }) => CategoryPromise;
+  updateManyCategories: (args: {
+    data: CategoryUpdateManyMutationInput;
+    where?: CategoryWhereInput;
+  }) => BatchPayloadPromise;
+  upsertCategory: (args: {
+    where: CategoryWhereUniqueInput;
+    create: CategoryCreateInput;
+    update: CategoryUpdateInput;
+  }) => CategoryPromise;
+  deleteCategory: (where: CategoryWhereUniqueInput) => CategoryPromise;
+  deleteManyCategories: (where?: CategoryWhereInput) => BatchPayloadPromise;
+  createComment: (data: CommentCreateInput) => CommentPromise;
+  updateComment: (args: {
+    data: CommentUpdateInput;
+    where: CommentWhereUniqueInput;
+  }) => CommentPromise;
+  updateManyComments: (args: {
+    data: CommentUpdateManyMutationInput;
+    where?: CommentWhereInput;
+  }) => BatchPayloadPromise;
+  upsertComment: (args: {
+    where: CommentWhereUniqueInput;
+    create: CommentCreateInput;
+    update: CommentUpdateInput;
+  }) => CommentPromise;
+  deleteComment: (where: CommentWhereUniqueInput) => CommentPromise;
+  deleteManyComments: (where?: CommentWhereInput) => BatchPayloadPromise;
+  createExternalResource: (
+    data: ExternalResourceCreateInput
+  ) => ExternalResourcePromise;
+  updateExternalResource: (args: {
+    data: ExternalResourceUpdateInput;
+    where: ExternalResourceWhereUniqueInput;
+  }) => ExternalResourcePromise;
+  updateManyExternalResources: (args: {
+    data: ExternalResourceUpdateManyMutationInput;
+    where?: ExternalResourceWhereInput;
+  }) => BatchPayloadPromise;
+  upsertExternalResource: (args: {
+    where: ExternalResourceWhereUniqueInput;
+    create: ExternalResourceCreateInput;
+    update: ExternalResourceUpdateInput;
+  }) => ExternalResourcePromise;
+  deleteExternalResource: (
+    where: ExternalResourceWhereUniqueInput
+  ) => ExternalResourcePromise;
+  deleteManyExternalResources: (
+    where?: ExternalResourceWhereInput
+  ) => BatchPayloadPromise;
+  createReview: (data: ReviewCreateInput) => ReviewPromise;
+  updateReview: (args: {
+    data: ReviewUpdateInput;
+    where: ReviewWhereUniqueInput;
+  }) => ReviewPromise;
+  updateManyReviews: (args: {
+    data: ReviewUpdateManyMutationInput;
+    where?: ReviewWhereInput;
+  }) => BatchPayloadPromise;
+  upsertReview: (args: {
+    where: ReviewWhereUniqueInput;
+    create: ReviewCreateInput;
+    update: ReviewUpdateInput;
+  }) => ReviewPromise;
+  deleteReview: (where: ReviewWhereUniqueInput) => ReviewPromise;
+  deleteManyReviews: (where?: ReviewWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -79,6 +271,38 @@ export interface Prisma {
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createVideo: (data: VideoCreateInput) => VideoPromise;
+  updateVideo: (args: {
+    data: VideoUpdateInput;
+    where: VideoWhereUniqueInput;
+  }) => VideoPromise;
+  updateManyVideos: (args: {
+    data: VideoUpdateManyMutationInput;
+    where?: VideoWhereInput;
+  }) => BatchPayloadPromise;
+  upsertVideo: (args: {
+    where: VideoWhereUniqueInput;
+    create: VideoCreateInput;
+    update: VideoUpdateInput;
+  }) => VideoPromise;
+  deleteVideo: (where: VideoWhereUniqueInput) => VideoPromise;
+  deleteManyVideos: (where?: VideoWhereInput) => BatchPayloadPromise;
+  createVote: (data: VoteCreateInput) => VotePromise;
+  updateVote: (args: {
+    data: VoteUpdateInput;
+    where: VoteWhereUniqueInput;
+  }) => VotePromise;
+  updateManyVotes: (args: {
+    data: VoteUpdateManyMutationInput;
+    where?: VoteWhereInput;
+  }) => BatchPayloadPromise;
+  upsertVote: (args: {
+    where: VoteWhereUniqueInput;
+    create: VoteCreateInput;
+    update: VoteUpdateInput;
+  }) => VotePromise;
+  deleteVote: (where: VoteWhereUniqueInput) => VotePromise;
+  deleteManyVotes: (where?: VoteWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -88,34 +312,255 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  category: (
+    where?: CategorySubscriptionWhereInput
+  ) => CategorySubscriptionPayloadSubscription;
+  comment: (
+    where?: CommentSubscriptionWhereInput
+  ) => CommentSubscriptionPayloadSubscription;
+  externalResource: (
+    where?: ExternalResourceSubscriptionWhereInput
+  ) => ExternalResourceSubscriptionPayloadSubscription;
+  review: (
+    where?: ReviewSubscriptionWhereInput
+  ) => ReviewSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  video: (
+    where?: VideoSubscriptionWhereInput
+  ) => VideoSubscriptionPayloadSubscription;
+  vote: (
+    where?: VoteSubscriptionWhereInput
+  ) => VoteSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
-  new (options?: BaseClientOptions): T;
+  new(options?: BaseClientOptions): T;
 }
 
 /**
  * Types
  */
 
+export type CategoryOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "category_ASC"
+  | "category_DESC";
+
+export type ReviewOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "rating_ASC"
+  | "rating_DESC"
+  | "review_ASC"
+  | "review_DESC";
+
+export type CommentOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "comment_ASC"
+  | "comment_DESC";
+
+export type VoteOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "positive_ASC"
+  | "positive_DESC";
+
+export type ExternalResourceOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "linkURL_ASC"
+  | "linkURL_DESC"
+  | "logoURL_ASC"
+  | "logoURL_DESC";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
+  | "userName_ASC"
+  | "userName_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
   | "password_DESC";
 
+export type VideoOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "externalURL_ASC"
+  | "externalURL_DESC";
+
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type CategoryWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface CategoryWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  category?: Maybe<String>;
+  category_not?: Maybe<String>;
+  category_in?: Maybe<String[] | String>;
+  category_not_in?: Maybe<String[] | String>;
+  category_lt?: Maybe<String>;
+  category_lte?: Maybe<String>;
+  category_gt?: Maybe<String>;
+  category_gte?: Maybe<String>;
+  category_contains?: Maybe<String>;
+  category_not_contains?: Maybe<String>;
+  category_starts_with?: Maybe<String>;
+  category_not_starts_with?: Maybe<String>;
+  category_ends_with?: Maybe<String>;
+  category_not_ends_with?: Maybe<String>;
+  video?: Maybe<VideoWhereInput>;
+  externalResource?: Maybe<ExternalResourceWhereInput>;
+  AND?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+  OR?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+  NOT?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+}
+
+export interface VideoWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  externalURL_not?: Maybe<String>;
+  externalURL_in?: Maybe<String[] | String>;
+  externalURL_not_in?: Maybe<String[] | String>;
+  externalURL_lt?: Maybe<String>;
+  externalURL_lte?: Maybe<String>;
+  externalURL_gt?: Maybe<String>;
+  externalURL_gte?: Maybe<String>;
+  externalURL_contains?: Maybe<String>;
+  externalURL_not_contains?: Maybe<String>;
+  externalURL_starts_with?: Maybe<String>;
+  externalURL_not_starts_with?: Maybe<String>;
+  externalURL_ends_with?: Maybe<String>;
+  externalURL_not_ends_with?: Maybe<String>;
+  categories_every?: Maybe<CategoryWhereInput>;
+  categories_some?: Maybe<CategoryWhereInput>;
+  categories_none?: Maybe<CategoryWhereInput>;
+  reviews_every?: Maybe<ReviewWhereInput>;
+  reviews_some?: Maybe<ReviewWhereInput>;
+  reviews_none?: Maybe<ReviewWhereInput>;
+  comments_every?: Maybe<CommentWhereInput>;
+  comments_some?: Maybe<CommentWhereInput>;
+  comments_none?: Maybe<CommentWhereInput>;
+  votes_every?: Maybe<VoteWhereInput>;
+  votes_some?: Maybe<VoteWhereInput>;
+  votes_none?: Maybe<VoteWhereInput>;
+  AND?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  OR?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+  NOT?: Maybe<VideoWhereInput[] | VideoWhereInput>;
+}
+
+export interface ReviewWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  rating?: Maybe<Int>;
+  rating_not?: Maybe<Int>;
+  rating_in?: Maybe<Int[] | Int>;
+  rating_not_in?: Maybe<Int[] | Int>;
+  rating_lt?: Maybe<Int>;
+  rating_lte?: Maybe<Int>;
+  rating_gt?: Maybe<Int>;
+  rating_gte?: Maybe<Int>;
+  review?: Maybe<String>;
+  review_not?: Maybe<String>;
+  review_in?: Maybe<String[] | String>;
+  review_not_in?: Maybe<String[] | String>;
+  review_lt?: Maybe<String>;
+  review_lte?: Maybe<String>;
+  review_gt?: Maybe<String>;
+  review_gte?: Maybe<String>;
+  review_contains?: Maybe<String>;
+  review_not_contains?: Maybe<String>;
+  review_starts_with?: Maybe<String>;
+  review_not_starts_with?: Maybe<String>;
+  review_ends_with?: Maybe<String>;
+  review_not_ends_with?: Maybe<String>;
+  user?: Maybe<UserWhereInput>;
+  externalResource?: Maybe<ExternalResourceWhereInput>;
+  video?: Maybe<VideoWhereInput>;
+  AND?: Maybe<ReviewWhereInput[] | ReviewWhereInput>;
+  OR?: Maybe<ReviewWhereInput[] | ReviewWhereInput>;
+  NOT?: Maybe<ReviewWhereInput[] | ReviewWhereInput>;
+}
 
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
@@ -132,20 +577,20 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
+  userName?: Maybe<String>;
+  userName_not?: Maybe<String>;
+  userName_in?: Maybe<String[] | String>;
+  userName_not_in?: Maybe<String[] | String>;
+  userName_lt?: Maybe<String>;
+  userName_lte?: Maybe<String>;
+  userName_gt?: Maybe<String>;
+  userName_gte?: Maybe<String>;
+  userName_contains?: Maybe<String>;
+  userName_not_contains?: Maybe<String>;
+  userName_starts_with?: Maybe<String>;
+  userName_not_starts_with?: Maybe<String>;
+  userName_ends_with?: Maybe<String>;
+  userName_not_ends_with?: Maybe<String>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -174,28 +619,1586 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  reviews_every?: Maybe<ReviewWhereInput>;
+  reviews_some?: Maybe<ReviewWhereInput>;
+  reviews_none?: Maybe<ReviewWhereInput>;
+  comments_every?: Maybe<CommentWhereInput>;
+  comments_some?: Maybe<CommentWhereInput>;
+  comments_none?: Maybe<CommentWhereInput>;
+  votes_every?: Maybe<VoteWhereInput>;
+  votes_some?: Maybe<VoteWhereInput>;
+  votes_none?: Maybe<VoteWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface UserCreateInput {
+export interface CommentWhereInput {
   id?: Maybe<ID_Input>;
-  name: String;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  comment?: Maybe<String>;
+  comment_not?: Maybe<String>;
+  comment_in?: Maybe<String[] | String>;
+  comment_not_in?: Maybe<String[] | String>;
+  comment_lt?: Maybe<String>;
+  comment_lte?: Maybe<String>;
+  comment_gt?: Maybe<String>;
+  comment_gte?: Maybe<String>;
+  comment_contains?: Maybe<String>;
+  comment_not_contains?: Maybe<String>;
+  comment_starts_with?: Maybe<String>;
+  comment_not_starts_with?: Maybe<String>;
+  comment_ends_with?: Maybe<String>;
+  comment_not_ends_with?: Maybe<String>;
+  user?: Maybe<UserWhereInput>;
+  externalResource?: Maybe<ExternalResourceWhereInput>;
+  video?: Maybe<VideoWhereInput>;
+  AND?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+  OR?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+  NOT?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+}
+
+export interface ExternalResourceWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  linkURL_not?: Maybe<String>;
+  linkURL_in?: Maybe<String[] | String>;
+  linkURL_not_in?: Maybe<String[] | String>;
+  linkURL_lt?: Maybe<String>;
+  linkURL_lte?: Maybe<String>;
+  linkURL_gt?: Maybe<String>;
+  linkURL_gte?: Maybe<String>;
+  linkURL_contains?: Maybe<String>;
+  linkURL_not_contains?: Maybe<String>;
+  linkURL_starts_with?: Maybe<String>;
+  linkURL_not_starts_with?: Maybe<String>;
+  linkURL_ends_with?: Maybe<String>;
+  linkURL_not_ends_with?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  logoURL_not?: Maybe<String>;
+  logoURL_in?: Maybe<String[] | String>;
+  logoURL_not_in?: Maybe<String[] | String>;
+  logoURL_lt?: Maybe<String>;
+  logoURL_lte?: Maybe<String>;
+  logoURL_gt?: Maybe<String>;
+  logoURL_gte?: Maybe<String>;
+  logoURL_contains?: Maybe<String>;
+  logoURL_not_contains?: Maybe<String>;
+  logoURL_starts_with?: Maybe<String>;
+  logoURL_not_starts_with?: Maybe<String>;
+  logoURL_ends_with?: Maybe<String>;
+  logoURL_not_ends_with?: Maybe<String>;
+  categories_every?: Maybe<CategoryWhereInput>;
+  categories_some?: Maybe<CategoryWhereInput>;
+  categories_none?: Maybe<CategoryWhereInput>;
+  reviews_every?: Maybe<ReviewWhereInput>;
+  reviews_some?: Maybe<ReviewWhereInput>;
+  reviews_none?: Maybe<ReviewWhereInput>;
+  comments_every?: Maybe<CommentWhereInput>;
+  comments_some?: Maybe<CommentWhereInput>;
+  comments_none?: Maybe<CommentWhereInput>;
+  votes_every?: Maybe<VoteWhereInput>;
+  votes_some?: Maybe<VoteWhereInput>;
+  votes_none?: Maybe<VoteWhereInput>;
+  AND?: Maybe<ExternalResourceWhereInput[] | ExternalResourceWhereInput>;
+  OR?: Maybe<ExternalResourceWhereInput[] | ExternalResourceWhereInput>;
+  NOT?: Maybe<ExternalResourceWhereInput[] | ExternalResourceWhereInput>;
+}
+
+export interface VoteWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  positive_not?: Maybe<Boolean>;
+  user?: Maybe<UserWhereInput>;
+  externalResource?: Maybe<ExternalResourceWhereInput>;
+  video?: Maybe<VideoWhereInput>;
+  AND?: Maybe<VoteWhereInput[] | VoteWhereInput>;
+  OR?: Maybe<VoteWhereInput[] | VoteWhereInput>;
+  NOT?: Maybe<VoteWhereInput[] | VoteWhereInput>;
+}
+
+export type CommentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ExternalResourceWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ReviewWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type VideoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type VoteWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CategoryCreateInput {
+  id?: Maybe<ID_Input>;
+  category?: Maybe<String>;
+  video?: Maybe<VideoCreateOneWithoutCategoriesInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutCategoriesInput>;
+}
+
+export interface VideoCreateOneWithoutCategoriesInput {
+  create?: Maybe<VideoCreateWithoutCategoriesInput>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoCreateWithoutCategoriesInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  reviews?: Maybe<ReviewCreateManyWithoutVideoInput>;
+  comments?: Maybe<CommentCreateManyWithoutVideoInput>;
+  votes?: Maybe<VoteCreateManyWithoutVideoInput>;
+}
+
+export interface ReviewCreateManyWithoutVideoInput {
+  create?: Maybe<
+    ReviewCreateWithoutVideoInput[] | ReviewCreateWithoutVideoInput
+  >;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+}
+
+export interface ReviewCreateWithoutVideoInput {
+  id?: Maybe<ID_Input>;
+  rating: Int;
+  review: String;
+  user?: Maybe<UserCreateOneWithoutReviewsInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutReviewsInput>;
+}
+
+export interface UserCreateOneWithoutReviewsInput {
+  create?: Maybe<UserCreateWithoutReviewsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutReviewsInput {
+  id?: Maybe<ID_Input>;
+  userName: String;
   email?: Maybe<String>;
   password: String;
+  comments?: Maybe<CommentCreateManyWithoutUserInput>;
+  votes?: Maybe<VoteCreateManyWithoutUserInput>;
+}
+
+export interface CommentCreateManyWithoutUserInput {
+  create?: Maybe<
+    CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput
+  >;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+}
+
+export interface CommentCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  comment: String;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutCommentsInput>;
+  video?: Maybe<VideoCreateOneWithoutCommentsInput>;
+}
+
+export interface ExternalResourceCreateOneWithoutCommentsInput {
+  create?: Maybe<ExternalResourceCreateWithoutCommentsInput>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteCreateManyWithoutExternalResourceInput>;
+}
+
+export interface CategoryCreateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | CategoryCreateWithoutExternalResourceInput[]
+    | CategoryCreateWithoutExternalResourceInput
+  >;
+  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+}
+
+export interface CategoryCreateWithoutExternalResourceInput {
+  id?: Maybe<ID_Input>;
+  category?: Maybe<String>;
+  video?: Maybe<VideoCreateOneWithoutCategoriesInput>;
+}
+
+export interface ReviewCreateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | ReviewCreateWithoutExternalResourceInput[]
+    | ReviewCreateWithoutExternalResourceInput
+  >;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+}
+
+export interface ReviewCreateWithoutExternalResourceInput {
+  id?: Maybe<ID_Input>;
+  rating: Int;
+  review: String;
+  user?: Maybe<UserCreateOneWithoutReviewsInput>;
+  video?: Maybe<VideoCreateOneWithoutReviewsInput>;
+}
+
+export interface VideoCreateOneWithoutReviewsInput {
+  create?: Maybe<VideoCreateWithoutReviewsInput>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoCreateWithoutReviewsInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutVideoInput>;
+  comments?: Maybe<CommentCreateManyWithoutVideoInput>;
+  votes?: Maybe<VoteCreateManyWithoutVideoInput>;
+}
+
+export interface CategoryCreateManyWithoutVideoInput {
+  create?: Maybe<
+    CategoryCreateWithoutVideoInput[] | CategoryCreateWithoutVideoInput
+  >;
+  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+}
+
+export interface CategoryCreateWithoutVideoInput {
+  id?: Maybe<ID_Input>;
+  category?: Maybe<String>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutCategoriesInput>;
+}
+
+export interface ExternalResourceCreateOneWithoutCategoriesInput {
+  create?: Maybe<ExternalResourceCreateWithoutCategoriesInput>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceCreateWithoutCategoriesInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  reviews?: Maybe<ReviewCreateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentCreateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteCreateManyWithoutExternalResourceInput>;
+}
+
+export interface CommentCreateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | CommentCreateWithoutExternalResourceInput[]
+    | CommentCreateWithoutExternalResourceInput
+  >;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+}
+
+export interface CommentCreateWithoutExternalResourceInput {
+  id?: Maybe<ID_Input>;
+  comment: String;
+  user?: Maybe<UserCreateOneWithoutCommentsInput>;
+  video?: Maybe<VideoCreateOneWithoutCommentsInput>;
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  userName: String;
+  email?: Maybe<String>;
+  password: String;
+  reviews?: Maybe<ReviewCreateManyWithoutUserInput>;
+  votes?: Maybe<VoteCreateManyWithoutUserInput>;
+}
+
+export interface ReviewCreateManyWithoutUserInput {
+  create?: Maybe<ReviewCreateWithoutUserInput[] | ReviewCreateWithoutUserInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+}
+
+export interface ReviewCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  rating: Int;
+  review: String;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutReviewsInput>;
+  video?: Maybe<VideoCreateOneWithoutReviewsInput>;
+}
+
+export interface ExternalResourceCreateOneWithoutReviewsInput {
+  create?: Maybe<ExternalResourceCreateWithoutReviewsInput>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceCreateWithoutReviewsInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentCreateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteCreateManyWithoutExternalResourceInput>;
+}
+
+export interface VoteCreateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | VoteCreateWithoutExternalResourceInput[]
+    | VoteCreateWithoutExternalResourceInput
+  >;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+}
+
+export interface VoteCreateWithoutExternalResourceInput {
+  id?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserCreateOneWithoutVotesInput>;
+  video?: Maybe<VideoCreateOneWithoutVotesInput>;
+}
+
+export interface UserCreateOneWithoutVotesInput {
+  create?: Maybe<UserCreateWithoutVotesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutVotesInput {
+  id?: Maybe<ID_Input>;
+  userName: String;
+  email?: Maybe<String>;
+  password: String;
+  reviews?: Maybe<ReviewCreateManyWithoutUserInput>;
+  comments?: Maybe<CommentCreateManyWithoutUserInput>;
+}
+
+export interface VideoCreateOneWithoutVotesInput {
+  create?: Maybe<VideoCreateWithoutVotesInput>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoCreateWithoutVotesInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutVideoInput>;
+  comments?: Maybe<CommentCreateManyWithoutVideoInput>;
+}
+
+export interface CommentCreateManyWithoutVideoInput {
+  create?: Maybe<
+    CommentCreateWithoutVideoInput[] | CommentCreateWithoutVideoInput
+  >;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+}
+
+export interface CommentCreateWithoutVideoInput {
+  id?: Maybe<ID_Input>;
+  comment: String;
+  user?: Maybe<UserCreateOneWithoutCommentsInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutCommentsInput>;
+}
+
+export interface VoteCreateManyWithoutUserInput {
+  create?: Maybe<VoteCreateWithoutUserInput[] | VoteCreateWithoutUserInput>;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+}
+
+export interface VoteCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutVotesInput>;
+  video?: Maybe<VideoCreateOneWithoutVotesInput>;
+}
+
+export interface ExternalResourceCreateOneWithoutVotesInput {
+  create?: Maybe<ExternalResourceCreateWithoutVotesInput>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceCreateWithoutVotesInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentCreateManyWithoutExternalResourceInput>;
+}
+
+export interface VideoCreateOneWithoutCommentsInput {
+  create?: Maybe<VideoCreateWithoutCommentsInput>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutVideoInput>;
+  votes?: Maybe<VoteCreateManyWithoutVideoInput>;
+}
+
+export interface VoteCreateManyWithoutVideoInput {
+  create?: Maybe<VoteCreateWithoutVideoInput[] | VoteCreateWithoutVideoInput>;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+}
+
+export interface VoteCreateWithoutVideoInput {
+  id?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserCreateOneWithoutVotesInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutVotesInput>;
+}
+
+export interface CategoryUpdateInput {
+  category?: Maybe<String>;
+  video?: Maybe<VideoUpdateOneWithoutCategoriesInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutCategoriesInput>;
+}
+
+export interface VideoUpdateOneWithoutCategoriesInput {
+  create?: Maybe<VideoCreateWithoutCategoriesInput>;
+  update?: Maybe<VideoUpdateWithoutCategoriesDataInput>;
+  upsert?: Maybe<VideoUpsertWithoutCategoriesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoUpdateWithoutCategoriesDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  reviews?: Maybe<ReviewUpdateManyWithoutVideoInput>;
+  comments?: Maybe<CommentUpdateManyWithoutVideoInput>;
+  votes?: Maybe<VoteUpdateManyWithoutVideoInput>;
+}
+
+export interface ReviewUpdateManyWithoutVideoInput {
+  create?: Maybe<
+    ReviewCreateWithoutVideoInput[] | ReviewCreateWithoutVideoInput
+  >;
+  delete?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  set?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  disconnect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  update?: Maybe<
+    | ReviewUpdateWithWhereUniqueWithoutVideoInput[]
+    | ReviewUpdateWithWhereUniqueWithoutVideoInput
+  >;
+  upsert?: Maybe<
+    | ReviewUpsertWithWhereUniqueWithoutVideoInput[]
+    | ReviewUpsertWithWhereUniqueWithoutVideoInput
+  >;
+  deleteMany?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutVideoInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutVideoDataInput;
+}
+
+export interface ReviewUpdateWithoutVideoDataInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutReviewsInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutReviewsInput>;
+}
+
+export interface UserUpdateOneWithoutReviewsInput {
+  create?: Maybe<UserCreateWithoutReviewsInput>;
+  update?: Maybe<UserUpdateWithoutReviewsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutReviewsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutReviewsDataInput {
+  userName?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  comments?: Maybe<CommentUpdateManyWithoutUserInput>;
+  votes?: Maybe<VoteUpdateManyWithoutUserInput>;
+}
+
+export interface CommentUpdateManyWithoutUserInput {
+  create?: Maybe<
+    CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput
+  >;
+  delete?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  set?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  disconnect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  update?: Maybe<
+    | CommentUpdateWithWhereUniqueWithoutUserInput[]
+    | CommentUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | CommentUpsertWithWhereUniqueWithoutUserInput[]
+    | CommentUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  updateMany?: Maybe<
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutUserDataInput;
+}
+
+export interface CommentUpdateWithoutUserDataInput {
+  comment?: Maybe<String>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutCommentsInput>;
+  video?: Maybe<VideoUpdateOneWithoutCommentsInput>;
+}
+
+export interface ExternalResourceUpdateOneWithoutCommentsInput {
+  create?: Maybe<ExternalResourceCreateWithoutCommentsInput>;
+  update?: Maybe<ExternalResourceUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<ExternalResourceUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceUpdateWithoutCommentsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteUpdateManyWithoutExternalResourceInput>;
+}
+
+export interface CategoryUpdateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | CategoryCreateWithoutExternalResourceInput[]
+    | CategoryCreateWithoutExternalResourceInput
+  >;
+  delete?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  set?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  disconnect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  update?: Maybe<
+    | CategoryUpdateWithWhereUniqueWithoutExternalResourceInput[]
+    | CategoryUpdateWithWhereUniqueWithoutExternalResourceInput
+  >;
+  upsert?: Maybe<
+    | CategoryUpsertWithWhereUniqueWithoutExternalResourceInput[]
+    | CategoryUpsertWithWhereUniqueWithoutExternalResourceInput
+  >;
+  deleteMany?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  updateMany?: Maybe<
+    | CategoryUpdateManyWithWhereNestedInput[]
+    | CategoryUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CategoryUpdateWithWhereUniqueWithoutExternalResourceInput {
+  where: CategoryWhereUniqueInput;
+  data: CategoryUpdateWithoutExternalResourceDataInput;
+}
+
+export interface CategoryUpdateWithoutExternalResourceDataInput {
+  category?: Maybe<String>;
+  video?: Maybe<VideoUpdateOneWithoutCategoriesInput>;
+}
+
+export interface CategoryUpsertWithWhereUniqueWithoutExternalResourceInput {
+  where: CategoryWhereUniqueInput;
+  update: CategoryUpdateWithoutExternalResourceDataInput;
+  create: CategoryCreateWithoutExternalResourceInput;
+}
+
+export interface CategoryScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  category?: Maybe<String>;
+  category_not?: Maybe<String>;
+  category_in?: Maybe<String[] | String>;
+  category_not_in?: Maybe<String[] | String>;
+  category_lt?: Maybe<String>;
+  category_lte?: Maybe<String>;
+  category_gt?: Maybe<String>;
+  category_gte?: Maybe<String>;
+  category_contains?: Maybe<String>;
+  category_not_contains?: Maybe<String>;
+  category_starts_with?: Maybe<String>;
+  category_not_starts_with?: Maybe<String>;
+  category_ends_with?: Maybe<String>;
+  category_not_ends_with?: Maybe<String>;
+  AND?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  OR?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  NOT?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+}
+
+export interface CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput;
+  data: CategoryUpdateManyDataInput;
+}
+
+export interface CategoryUpdateManyDataInput {
+  category?: Maybe<String>;
+}
+
+export interface ReviewUpdateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | ReviewCreateWithoutExternalResourceInput[]
+    | ReviewCreateWithoutExternalResourceInput
+  >;
+  delete?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  set?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  disconnect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  update?: Maybe<
+    | ReviewUpdateWithWhereUniqueWithoutExternalResourceInput[]
+    | ReviewUpdateWithWhereUniqueWithoutExternalResourceInput
+  >;
+  upsert?: Maybe<
+    | ReviewUpsertWithWhereUniqueWithoutExternalResourceInput[]
+    | ReviewUpsertWithWhereUniqueWithoutExternalResourceInput
+  >;
+  deleteMany?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutExternalResourceInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutExternalResourceDataInput;
+}
+
+export interface ReviewUpdateWithoutExternalResourceDataInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutReviewsInput>;
+  video?: Maybe<VideoUpdateOneWithoutReviewsInput>;
+}
+
+export interface VideoUpdateOneWithoutReviewsInput {
+  create?: Maybe<VideoCreateWithoutReviewsInput>;
+  update?: Maybe<VideoUpdateWithoutReviewsDataInput>;
+  upsert?: Maybe<VideoUpsertWithoutReviewsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoUpdateWithoutReviewsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutVideoInput>;
+  comments?: Maybe<CommentUpdateManyWithoutVideoInput>;
+  votes?: Maybe<VoteUpdateManyWithoutVideoInput>;
+}
+
+export interface CategoryUpdateManyWithoutVideoInput {
+  create?: Maybe<
+    CategoryCreateWithoutVideoInput[] | CategoryCreateWithoutVideoInput
+  >;
+  delete?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  set?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  disconnect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+  update?: Maybe<
+    | CategoryUpdateWithWhereUniqueWithoutVideoInput[]
+    | CategoryUpdateWithWhereUniqueWithoutVideoInput
+  >;
+  upsert?: Maybe<
+    | CategoryUpsertWithWhereUniqueWithoutVideoInput[]
+    | CategoryUpsertWithWhereUniqueWithoutVideoInput
+  >;
+  deleteMany?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  updateMany?: Maybe<
+    | CategoryUpdateManyWithWhereNestedInput[]
+    | CategoryUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CategoryUpdateWithWhereUniqueWithoutVideoInput {
+  where: CategoryWhereUniqueInput;
+  data: CategoryUpdateWithoutVideoDataInput;
+}
+
+export interface CategoryUpdateWithoutVideoDataInput {
+  category?: Maybe<String>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutCategoriesInput>;
+}
+
+export interface ExternalResourceUpdateOneWithoutCategoriesInput {
+  create?: Maybe<ExternalResourceCreateWithoutCategoriesInput>;
+  update?: Maybe<ExternalResourceUpdateWithoutCategoriesDataInput>;
+  upsert?: Maybe<ExternalResourceUpsertWithoutCategoriesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceUpdateWithoutCategoriesDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  reviews?: Maybe<ReviewUpdateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentUpdateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteUpdateManyWithoutExternalResourceInput>;
+}
+
+export interface CommentUpdateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | CommentCreateWithoutExternalResourceInput[]
+    | CommentCreateWithoutExternalResourceInput
+  >;
+  delete?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  set?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  disconnect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  update?: Maybe<
+    | CommentUpdateWithWhereUniqueWithoutExternalResourceInput[]
+    | CommentUpdateWithWhereUniqueWithoutExternalResourceInput
+  >;
+  upsert?: Maybe<
+    | CommentUpsertWithWhereUniqueWithoutExternalResourceInput[]
+    | CommentUpsertWithWhereUniqueWithoutExternalResourceInput
+  >;
+  deleteMany?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  updateMany?: Maybe<
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutExternalResourceInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutExternalResourceDataInput;
+}
+
+export interface CommentUpdateWithoutExternalResourceDataInput {
+  comment?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutCommentsInput>;
+  video?: Maybe<VideoUpdateOneWithoutCommentsInput>;
+}
+
+export interface UserUpdateOneWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  update?: Maybe<UserUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutCommentsDataInput {
+  userName?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  votes?: Maybe<VoteUpdateManyWithoutUserInput>;
+}
+
+export interface ReviewUpdateManyWithoutUserInput {
+  create?: Maybe<ReviewCreateWithoutUserInput[] | ReviewCreateWithoutUserInput>;
+  delete?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  connect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  set?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  disconnect?: Maybe<ReviewWhereUniqueInput[] | ReviewWhereUniqueInput>;
+  update?: Maybe<
+    | ReviewUpdateWithWhereUniqueWithoutUserInput[]
+    | ReviewUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | ReviewUpsertWithWhereUniqueWithoutUserInput[]
+    | ReviewUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReviewUpdateManyWithWhereNestedInput[]
+    | ReviewUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReviewUpdateWithWhereUniqueWithoutUserInput {
+  where: ReviewWhereUniqueInput;
+  data: ReviewUpdateWithoutUserDataInput;
+}
+
+export interface ReviewUpdateWithoutUserDataInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutReviewsInput>;
+  video?: Maybe<VideoUpdateOneWithoutReviewsInput>;
+}
+
+export interface ExternalResourceUpdateOneWithoutReviewsInput {
+  create?: Maybe<ExternalResourceCreateWithoutReviewsInput>;
+  update?: Maybe<ExternalResourceUpdateWithoutReviewsDataInput>;
+  upsert?: Maybe<ExternalResourceUpsertWithoutReviewsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceUpdateWithoutReviewsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentUpdateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteUpdateManyWithoutExternalResourceInput>;
+}
+
+export interface VoteUpdateManyWithoutExternalResourceInput {
+  create?: Maybe<
+    | VoteCreateWithoutExternalResourceInput[]
+    | VoteCreateWithoutExternalResourceInput
+  >;
+  delete?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  set?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  disconnect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  update?: Maybe<
+    | VoteUpdateWithWhereUniqueWithoutExternalResourceInput[]
+    | VoteUpdateWithWhereUniqueWithoutExternalResourceInput
+  >;
+  upsert?: Maybe<
+    | VoteUpsertWithWhereUniqueWithoutExternalResourceInput[]
+    | VoteUpsertWithWhereUniqueWithoutExternalResourceInput
+  >;
+  deleteMany?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+  updateMany?: Maybe<
+    VoteUpdateManyWithWhereNestedInput[] | VoteUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface VoteUpdateWithWhereUniqueWithoutExternalResourceInput {
+  where: VoteWhereUniqueInput;
+  data: VoteUpdateWithoutExternalResourceDataInput;
+}
+
+export interface VoteUpdateWithoutExternalResourceDataInput {
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserUpdateOneWithoutVotesInput>;
+  video?: Maybe<VideoUpdateOneWithoutVotesInput>;
+}
+
+export interface UserUpdateOneWithoutVotesInput {
+  create?: Maybe<UserCreateWithoutVotesInput>;
+  update?: Maybe<UserUpdateWithoutVotesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutVotesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutVotesDataInput {
+  userName?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  comments?: Maybe<CommentUpdateManyWithoutUserInput>;
+}
+
+export interface UserUpsertWithoutVotesInput {
+  update: UserUpdateWithoutVotesDataInput;
+  create: UserCreateWithoutVotesInput;
+}
+
+export interface VideoUpdateOneWithoutVotesInput {
+  create?: Maybe<VideoCreateWithoutVotesInput>;
+  update?: Maybe<VideoUpdateWithoutVotesDataInput>;
+  upsert?: Maybe<VideoUpsertWithoutVotesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoUpdateWithoutVotesDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutVideoInput>;
+  comments?: Maybe<CommentUpdateManyWithoutVideoInput>;
+}
+
+export interface CommentUpdateManyWithoutVideoInput {
+  create?: Maybe<
+    CommentCreateWithoutVideoInput[] | CommentCreateWithoutVideoInput
+  >;
+  delete?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  set?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  disconnect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  update?: Maybe<
+    | CommentUpdateWithWhereUniqueWithoutVideoInput[]
+    | CommentUpdateWithWhereUniqueWithoutVideoInput
+  >;
+  upsert?: Maybe<
+    | CommentUpsertWithWhereUniqueWithoutVideoInput[]
+    | CommentUpsertWithWhereUniqueWithoutVideoInput
+  >;
+  deleteMany?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  updateMany?: Maybe<
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutVideoInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutVideoDataInput;
+}
+
+export interface CommentUpdateWithoutVideoDataInput {
+  comment?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutCommentsInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutCommentsInput>;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutVideoInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutVideoDataInput;
+  create: CommentCreateWithoutVideoInput;
+}
+
+export interface CommentScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  comment?: Maybe<String>;
+  comment_not?: Maybe<String>;
+  comment_in?: Maybe<String[] | String>;
+  comment_not_in?: Maybe<String[] | String>;
+  comment_lt?: Maybe<String>;
+  comment_lte?: Maybe<String>;
+  comment_gt?: Maybe<String>;
+  comment_gte?: Maybe<String>;
+  comment_contains?: Maybe<String>;
+  comment_not_contains?: Maybe<String>;
+  comment_starts_with?: Maybe<String>;
+  comment_not_starts_with?: Maybe<String>;
+  comment_ends_with?: Maybe<String>;
+  comment_not_ends_with?: Maybe<String>;
+  AND?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  OR?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  NOT?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+}
+
+export interface CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput;
+  data: CommentUpdateManyDataInput;
+}
+
+export interface CommentUpdateManyDataInput {
+  comment?: Maybe<String>;
+}
+
+export interface VideoUpsertWithoutVotesInput {
+  update: VideoUpdateWithoutVotesDataInput;
+  create: VideoCreateWithoutVotesInput;
+}
+
+export interface VoteUpsertWithWhereUniqueWithoutExternalResourceInput {
+  where: VoteWhereUniqueInput;
+  update: VoteUpdateWithoutExternalResourceDataInput;
+  create: VoteCreateWithoutExternalResourceInput;
+}
+
+export interface VoteScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  positive_not?: Maybe<Boolean>;
+  AND?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+  OR?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+  NOT?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+}
+
+export interface VoteUpdateManyWithWhereNestedInput {
+  where: VoteScalarWhereInput;
+  data: VoteUpdateManyDataInput;
+}
+
+export interface VoteUpdateManyDataInput {
+  positive?: Maybe<Boolean>;
+}
+
+export interface ExternalResourceUpsertWithoutReviewsInput {
+  update: ExternalResourceUpdateWithoutReviewsDataInput;
+  create: ExternalResourceCreateWithoutReviewsInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutUserInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutUserDataInput;
+  create: ReviewCreateWithoutUserInput;
+}
+
+export interface ReviewScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  rating?: Maybe<Int>;
+  rating_not?: Maybe<Int>;
+  rating_in?: Maybe<Int[] | Int>;
+  rating_not_in?: Maybe<Int[] | Int>;
+  rating_lt?: Maybe<Int>;
+  rating_lte?: Maybe<Int>;
+  rating_gt?: Maybe<Int>;
+  rating_gte?: Maybe<Int>;
+  review?: Maybe<String>;
+  review_not?: Maybe<String>;
+  review_in?: Maybe<String[] | String>;
+  review_not_in?: Maybe<String[] | String>;
+  review_lt?: Maybe<String>;
+  review_lte?: Maybe<String>;
+  review_gt?: Maybe<String>;
+  review_gte?: Maybe<String>;
+  review_contains?: Maybe<String>;
+  review_not_contains?: Maybe<String>;
+  review_starts_with?: Maybe<String>;
+  review_not_starts_with?: Maybe<String>;
+  review_ends_with?: Maybe<String>;
+  review_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  OR?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+  NOT?: Maybe<ReviewScalarWhereInput[] | ReviewScalarWhereInput>;
+}
+
+export interface ReviewUpdateManyWithWhereNestedInput {
+  where: ReviewScalarWhereInput;
+  data: ReviewUpdateManyDataInput;
+}
+
+export interface ReviewUpdateManyDataInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+}
+
+export interface VoteUpdateManyWithoutUserInput {
+  create?: Maybe<VoteCreateWithoutUserInput[] | VoteCreateWithoutUserInput>;
+  delete?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  set?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  disconnect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  update?: Maybe<
+    | VoteUpdateWithWhereUniqueWithoutUserInput[]
+    | VoteUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | VoteUpsertWithWhereUniqueWithoutUserInput[]
+    | VoteUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+  updateMany?: Maybe<
+    VoteUpdateManyWithWhereNestedInput[] | VoteUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface VoteUpdateWithWhereUniqueWithoutUserInput {
+  where: VoteWhereUniqueInput;
+  data: VoteUpdateWithoutUserDataInput;
+}
+
+export interface VoteUpdateWithoutUserDataInput {
+  positive?: Maybe<Boolean>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutVotesInput>;
+  video?: Maybe<VideoUpdateOneWithoutVotesInput>;
+}
+
+export interface ExternalResourceUpdateOneWithoutVotesInput {
+  create?: Maybe<ExternalResourceCreateWithoutVotesInput>;
+  update?: Maybe<ExternalResourceUpdateWithoutVotesDataInput>;
+  upsert?: Maybe<ExternalResourceUpsertWithoutVotesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ExternalResourceWhereUniqueInput>;
+}
+
+export interface ExternalResourceUpdateWithoutVotesDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentUpdateManyWithoutExternalResourceInput>;
+}
+
+export interface ExternalResourceUpsertWithoutVotesInput {
+  update: ExternalResourceUpdateWithoutVotesDataInput;
+  create: ExternalResourceCreateWithoutVotesInput;
+}
+
+export interface VoteUpsertWithWhereUniqueWithoutUserInput {
+  where: VoteWhereUniqueInput;
+  update: VoteUpdateWithoutUserDataInput;
+  create: VoteCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput;
+  create: UserCreateWithoutCommentsInput;
+}
+
+export interface VideoUpdateOneWithoutCommentsInput {
+  create?: Maybe<VideoCreateWithoutCommentsInput>;
+  update?: Maybe<VideoUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<VideoUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<VideoWhereUniqueInput>;
+}
+
+export interface VideoUpdateWithoutCommentsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutVideoInput>;
+  votes?: Maybe<VoteUpdateManyWithoutVideoInput>;
+}
+
+export interface VoteUpdateManyWithoutVideoInput {
+  create?: Maybe<VoteCreateWithoutVideoInput[] | VoteCreateWithoutVideoInput>;
+  delete?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  connect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  set?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  disconnect?: Maybe<VoteWhereUniqueInput[] | VoteWhereUniqueInput>;
+  update?: Maybe<
+    | VoteUpdateWithWhereUniqueWithoutVideoInput[]
+    | VoteUpdateWithWhereUniqueWithoutVideoInput
+  >;
+  upsert?: Maybe<
+    | VoteUpsertWithWhereUniqueWithoutVideoInput[]
+    | VoteUpsertWithWhereUniqueWithoutVideoInput
+  >;
+  deleteMany?: Maybe<VoteScalarWhereInput[] | VoteScalarWhereInput>;
+  updateMany?: Maybe<
+    VoteUpdateManyWithWhereNestedInput[] | VoteUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface VoteUpdateWithWhereUniqueWithoutVideoInput {
+  where: VoteWhereUniqueInput;
+  data: VoteUpdateWithoutVideoDataInput;
+}
+
+export interface VoteUpdateWithoutVideoDataInput {
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserUpdateOneWithoutVotesInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutVotesInput>;
+}
+
+export interface VoteUpsertWithWhereUniqueWithoutVideoInput {
+  where: VoteWhereUniqueInput;
+  update: VoteUpdateWithoutVideoDataInput;
+  create: VoteCreateWithoutVideoInput;
+}
+
+export interface VideoUpsertWithoutCommentsInput {
+  update: VideoUpdateWithoutCommentsDataInput;
+  create: VideoCreateWithoutCommentsInput;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutExternalResourceInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutExternalResourceDataInput;
+  create: CommentCreateWithoutExternalResourceInput;
+}
+
+export interface ExternalResourceUpsertWithoutCategoriesInput {
+  update: ExternalResourceUpdateWithoutCategoriesDataInput;
+  create: ExternalResourceCreateWithoutCategoriesInput;
+}
+
+export interface CategoryUpsertWithWhereUniqueWithoutVideoInput {
+  where: CategoryWhereUniqueInput;
+  update: CategoryUpdateWithoutVideoDataInput;
+  create: CategoryCreateWithoutVideoInput;
+}
+
+export interface VideoUpsertWithoutReviewsInput {
+  update: VideoUpdateWithoutReviewsDataInput;
+  create: VideoCreateWithoutReviewsInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutExternalResourceInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutExternalResourceDataInput;
+  create: ReviewCreateWithoutExternalResourceInput;
+}
+
+export interface ExternalResourceUpsertWithoutCommentsInput {
+  update: ExternalResourceUpdateWithoutCommentsDataInput;
+  create: ExternalResourceCreateWithoutCommentsInput;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutUserDataInput;
+  create: CommentCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutReviewsInput {
+  update: UserUpdateWithoutReviewsDataInput;
+  create: UserCreateWithoutReviewsInput;
+}
+
+export interface ReviewUpsertWithWhereUniqueWithoutVideoInput {
+  where: ReviewWhereUniqueInput;
+  update: ReviewUpdateWithoutVideoDataInput;
+  create: ReviewCreateWithoutVideoInput;
+}
+
+export interface VideoUpsertWithoutCategoriesInput {
+  update: VideoUpdateWithoutCategoriesDataInput;
+  create: VideoCreateWithoutCategoriesInput;
+}
+
+export interface CategoryUpdateManyMutationInput {
+  category?: Maybe<String>;
+}
+
+export interface CommentCreateInput {
+  id?: Maybe<ID_Input>;
+  comment: String;
+  user?: Maybe<UserCreateOneWithoutCommentsInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutCommentsInput>;
+  video?: Maybe<VideoCreateOneWithoutCommentsInput>;
+}
+
+export interface CommentUpdateInput {
+  comment?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutCommentsInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutCommentsInput>;
+  video?: Maybe<VideoUpdateOneWithoutCommentsInput>;
+}
+
+export interface CommentUpdateManyMutationInput {
+  comment?: Maybe<String>;
+}
+
+export interface ExternalResourceCreateInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentCreateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteCreateManyWithoutExternalResourceInput>;
+}
+
+export interface ExternalResourceUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutExternalResourceInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutExternalResourceInput>;
+  comments?: Maybe<CommentUpdateManyWithoutExternalResourceInput>;
+  votes?: Maybe<VoteUpdateManyWithoutExternalResourceInput>;
+}
+
+export interface ExternalResourceUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  linkURL?: Maybe<String>;
+  logoURL?: Maybe<String>;
+}
+
+export interface ReviewCreateInput {
+  id?: Maybe<ID_Input>;
+  rating: Int;
+  review: String;
+  user?: Maybe<UserCreateOneWithoutReviewsInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutReviewsInput>;
+  video?: Maybe<VideoCreateOneWithoutReviewsInput>;
+}
+
+export interface ReviewUpdateInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+  user?: Maybe<UserUpdateOneWithoutReviewsInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutReviewsInput>;
+  video?: Maybe<VideoUpdateOneWithoutReviewsInput>;
+}
+
+export interface ReviewUpdateManyMutationInput {
+  rating?: Maybe<Int>;
+  review?: Maybe<String>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  userName: String;
+  email?: Maybe<String>;
+  password: String;
+  reviews?: Maybe<ReviewCreateManyWithoutUserInput>;
+  comments?: Maybe<CommentCreateManyWithoutUserInput>;
+  votes?: Maybe<VoteCreateManyWithoutUserInput>;
 }
 
 export interface UserUpdateInput {
-  name?: Maybe<String>;
+  userName?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  reviews?: Maybe<ReviewUpdateManyWithoutUserInput>;
+  comments?: Maybe<CommentUpdateManyWithoutUserInput>;
+  votes?: Maybe<VoteUpdateManyWithoutUserInput>;
+}
+
+export interface UserUpdateManyMutationInput {
+  userName?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
 }
 
-export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
+export interface VideoCreateInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryCreateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewCreateManyWithoutVideoInput>;
+  comments?: Maybe<CommentCreateManyWithoutVideoInput>;
+  votes?: Maybe<VoteCreateManyWithoutVideoInput>;
+}
+
+export interface VideoUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+  categories?: Maybe<CategoryUpdateManyWithoutVideoInput>;
+  reviews?: Maybe<ReviewUpdateManyWithoutVideoInput>;
+  comments?: Maybe<CommentUpdateManyWithoutVideoInput>;
+  votes?: Maybe<VoteUpdateManyWithoutVideoInput>;
+}
+
+export interface VideoUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  externalURL?: Maybe<String>;
+}
+
+export interface VoteCreateInput {
+  id?: Maybe<ID_Input>;
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserCreateOneWithoutVotesInput>;
+  externalResource?: Maybe<ExternalResourceCreateOneWithoutVotesInput>;
+  video?: Maybe<VideoCreateOneWithoutVotesInput>;
+}
+
+export interface VoteUpdateInput {
+  positive?: Maybe<Boolean>;
+  user?: Maybe<UserUpdateOneWithoutVotesInput>;
+  externalResource?: Maybe<ExternalResourceUpdateOneWithoutVotesInput>;
+  video?: Maybe<VideoUpdateOneWithoutVotesInput>;
+}
+
+export interface VoteUpdateManyMutationInput {
+  positive?: Maybe<Boolean>;
+}
+
+export interface CategorySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CategoryWhereInput>;
+  AND?: Maybe<
+    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
+  >;
+  OR?: Maybe<CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput>;
+  NOT?: Maybe<
+    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
+  >;
+}
+
+export interface CommentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CommentWhereInput>;
+  AND?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+  OR?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+  NOT?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
+}
+
+export interface ExternalResourceSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ExternalResourceWhereInput>;
+  AND?: Maybe<
+    | ExternalResourceSubscriptionWhereInput[]
+    | ExternalResourceSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ExternalResourceSubscriptionWhereInput[]
+    | ExternalResourceSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ExternalResourceSubscriptionWhereInput[]
+    | ExternalResourceSubscriptionWhereInput
+  >;
+}
+
+export interface ReviewSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ReviewWhereInput>;
+  AND?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
+  OR?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
+  NOT?: Maybe<ReviewSubscriptionWhereInput[] | ReviewSubscriptionWhereInput>;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -209,61 +2212,583 @@ export interface UserSubscriptionWhereInput {
   NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
+export interface VideoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<VideoWhereInput>;
+  AND?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
+  OR?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
+  NOT?: Maybe<VideoSubscriptionWhereInput[] | VideoSubscriptionWhereInput>;
+}
+
+export interface VoteSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<VoteWhereInput>;
+  AND?: Maybe<VoteSubscriptionWhereInput[] | VoteSubscriptionWhereInput>;
+  OR?: Maybe<VoteSubscriptionWhereInput[] | VoteSubscriptionWhereInput>;
+  NOT?: Maybe<VoteSubscriptionWhereInput[] | VoteSubscriptionWhereInput>;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
 
+export interface Category {
+  id: ID_Output;
+  category?: String;
+}
+
+export interface CategoryPromise extends Promise<Category>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  category: () => Promise<String>;
+  video: <T = VideoPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+}
+
+export interface CategorySubscription
+  extends Promise<AsyncIterator<Category>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  category: () => Promise<AsyncIterator<String>>;
+  video: <T = VideoSubscription>() => T;
+  externalResource: <T = ExternalResourceSubscription>() => T;
+}
+
+export interface CategoryNullablePromise
+  extends Promise<Category | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  category: () => Promise<String>;
+  video: <T = VideoPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+}
+
+export interface Video {
+  id: ID_Output;
+  title?: String;
+  description?: String;
+  externalURL?: String;
+}
+
+export interface VideoPromise extends Promise<Video>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  externalURL: () => Promise<String>;
+  categories: <T = FragmentableArray<Category>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface VideoSubscription
+  extends Promise<AsyncIterator<Video>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  externalURL: () => Promise<AsyncIterator<String>>;
+  categories: <T = Promise<AsyncIterator<CategorySubscription>>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = Promise<AsyncIterator<VoteSubscription>>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface VideoNullablePromise
+  extends Promise<Video | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  externalURL: () => Promise<String>;
+  categories: <T = FragmentableArray<Category>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Review {
+  id: ID_Output;
+  rating: Int;
+  review: String;
+}
+
+export interface ReviewPromise extends Promise<Review>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  rating: () => Promise<Int>;
+  review: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
+export interface ReviewSubscription
+  extends Promise<AsyncIterator<Review>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  rating: () => Promise<AsyncIterator<Int>>;
+  review: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  externalResource: <T = ExternalResourceSubscription>() => T;
+  video: <T = VideoSubscription>() => T;
+}
+
+export interface ReviewNullablePromise
+  extends Promise<Review | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  rating: () => Promise<Int>;
+  review: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
 export interface User {
   id: ID_Output;
-  name: String;
+  userName: String;
   email?: String;
   password: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
-    Fragmentable {
+  Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = Promise<AsyncIterator<VoteSubscription>>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface UserNullablePromise
   extends Promise<User | null>,
-    Fragmentable {
+  Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
-export interface UserConnection {
+export interface Comment {
+  id: ID_Output;
+  comment: String;
+}
+
+export interface CommentPromise extends Promise<Comment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  comment: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
+export interface CommentSubscription
+  extends Promise<AsyncIterator<Comment>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  comment: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  externalResource: <T = ExternalResourceSubscription>() => T;
+  video: <T = VideoSubscription>() => T;
+}
+
+export interface CommentNullablePromise
+  extends Promise<Comment | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  comment: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
+export interface ExternalResource {
+  id: ID_Output;
+  title?: String;
+  description?: String;
+  linkURL?: String;
+  logoURL?: String;
+}
+
+export interface ExternalResourcePromise
+  extends Promise<ExternalResource>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  linkURL: () => Promise<String>;
+  logoURL: () => Promise<String>;
+  categories: <T = FragmentableArray<Category>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface ExternalResourceSubscription
+  extends Promise<AsyncIterator<ExternalResource>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  linkURL: () => Promise<AsyncIterator<String>>;
+  logoURL: () => Promise<AsyncIterator<String>>;
+  categories: <T = Promise<AsyncIterator<CategorySubscription>>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = Promise<AsyncIterator<ReviewSubscription>>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = Promise<AsyncIterator<VoteSubscription>>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface ExternalResourceNullablePromise
+  extends Promise<ExternalResource | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  linkURL: () => Promise<String>;
+  logoURL: () => Promise<String>;
+  categories: <T = FragmentableArray<Category>>(args?: {
+    where?: CategoryWhereInput;
+    orderBy?: CategoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reviews: <T = FragmentableArray<Review>>(args?: {
+    where?: ReviewWhereInput;
+    orderBy?: ReviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput;
+    orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  votes: <T = FragmentableArray<Vote>>(args?: {
+    where?: VoteWhereInput;
+    orderBy?: VoteOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Vote {
+  id: ID_Output;
+  positive: Boolean;
+}
+
+export interface VotePromise extends Promise<Vote>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  positive: () => Promise<Boolean>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
+export interface VoteSubscription
+  extends Promise<AsyncIterator<Vote>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  positive: () => Promise<AsyncIterator<Boolean>>;
+  user: <T = UserSubscription>() => T;
+  externalResource: <T = ExternalResourceSubscription>() => T;
+  video: <T = VideoSubscription>() => T;
+}
+
+export interface VoteNullablePromise
+  extends Promise<Vote | null>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  positive: () => Promise<Boolean>;
+  user: <T = UserPromise>() => T;
+  externalResource: <T = ExternalResourcePromise>() => T;
+  video: <T = VideoPromise>() => T;
+}
+
+export interface CategoryConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: CategoryEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
+export interface CategoryConnectionPromise
+  extends Promise<CategoryConnection>,
+  Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<CategoryEdge>>() => T;
+  aggregate: <T = AggregateCategoryPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
+export interface CategoryConnectionSubscription
+  extends Promise<AsyncIterator<CategoryConnection>>,
+  Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CategoryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCategorySubscription>() => T;
 }
 
 export interface PageInfo {
@@ -282,11 +2807,231 @@ export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
 
 export interface PageInfoSubscription
   extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
+  Fragmentable {
   hasNextPage: () => Promise<AsyncIterator<Boolean>>;
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CategoryEdge {
+  node: Category;
+  cursor: String;
+}
+
+export interface CategoryEdgePromise
+  extends Promise<CategoryEdge>,
+  Fragmentable {
+  node: <T = CategoryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CategoryEdgeSubscription
+  extends Promise<AsyncIterator<CategoryEdge>>,
+  Fragmentable {
+  node: <T = CategorySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCategory {
+  count: Int;
+}
+
+export interface AggregateCategoryPromise
+  extends Promise<AggregateCategory>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCategorySubscription
+  extends Promise<AsyncIterator<AggregateCategory>>,
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CommentConnection {
+  pageInfo: PageInfo;
+  edges: CommentEdge[];
+}
+
+export interface CommentConnectionPromise
+  extends Promise<CommentConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentEdge>>() => T;
+  aggregate: <T = AggregateCommentPromise>() => T;
+}
+
+export interface CommentConnectionSubscription
+  extends Promise<AsyncIterator<CommentConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentSubscription>() => T;
+}
+
+export interface CommentEdge {
+  node: Comment;
+  cursor: String;
+}
+
+export interface CommentEdgePromise extends Promise<CommentEdge>, Fragmentable {
+  node: <T = CommentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CommentEdgeSubscription
+  extends Promise<AsyncIterator<CommentEdge>>,
+  Fragmentable {
+  node: <T = CommentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateComment {
+  count: Int;
+}
+
+export interface AggregateCommentPromise
+  extends Promise<AggregateComment>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCommentSubscription
+  extends Promise<AsyncIterator<AggregateComment>>,
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ExternalResourceConnection {
+  pageInfo: PageInfo;
+  edges: ExternalResourceEdge[];
+}
+
+export interface ExternalResourceConnectionPromise
+  extends Promise<ExternalResourceConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ExternalResourceEdge>>() => T;
+  aggregate: <T = AggregateExternalResourcePromise>() => T;
+}
+
+export interface ExternalResourceConnectionSubscription
+  extends Promise<AsyncIterator<ExternalResourceConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ExternalResourceEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateExternalResourceSubscription>() => T;
+}
+
+export interface ExternalResourceEdge {
+  node: ExternalResource;
+  cursor: String;
+}
+
+export interface ExternalResourceEdgePromise
+  extends Promise<ExternalResourceEdge>,
+  Fragmentable {
+  node: <T = ExternalResourcePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ExternalResourceEdgeSubscription
+  extends Promise<AsyncIterator<ExternalResourceEdge>>,
+  Fragmentable {
+  node: <T = ExternalResourceSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateExternalResource {
+  count: Int;
+}
+
+export interface AggregateExternalResourcePromise
+  extends Promise<AggregateExternalResource>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateExternalResourceSubscription
+  extends Promise<AsyncIterator<AggregateExternalResource>>,
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ReviewConnection {
+  pageInfo: PageInfo;
+  edges: ReviewEdge[];
+}
+
+export interface ReviewConnectionPromise
+  extends Promise<ReviewConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewEdge>>() => T;
+  aggregate: <T = AggregateReviewPromise>() => T;
+}
+
+export interface ReviewConnectionSubscription
+  extends Promise<AsyncIterator<ReviewConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewSubscription>() => T;
+}
+
+export interface ReviewEdge {
+  node: Review;
+  cursor: String;
+}
+
+export interface ReviewEdgePromise extends Promise<ReviewEdge>, Fragmentable {
+  node: <T = ReviewPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ReviewEdgeSubscription
+  extends Promise<AsyncIterator<ReviewEdge>>,
+  Fragmentable {
+  node: <T = ReviewSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateReview {
+  count: Int;
+}
+
+export interface AggregateReviewPromise
+  extends Promise<AggregateReview>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewSubscription
+  extends Promise<AsyncIterator<AggregateReview>>,
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserEdge {
@@ -301,7 +3046,7 @@ export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
 
 export interface UserEdgeSubscription
   extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
+  Fragmentable {
   node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -312,13 +3057,121 @@ export interface AggregateUser {
 
 export interface AggregateUserPromise
   extends Promise<AggregateUser>,
-    Fragmentable {
+  Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregateUserSubscription
   extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface VideoConnection {
+  pageInfo: PageInfo;
+  edges: VideoEdge[];
+}
+
+export interface VideoConnectionPromise
+  extends Promise<VideoConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<VideoEdge>>() => T;
+  aggregate: <T = AggregateVideoPromise>() => T;
+}
+
+export interface VideoConnectionSubscription
+  extends Promise<AsyncIterator<VideoConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<VideoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateVideoSubscription>() => T;
+}
+
+export interface VideoEdge {
+  node: Video;
+  cursor: String;
+}
+
+export interface VideoEdgePromise extends Promise<VideoEdge>, Fragmentable {
+  node: <T = VideoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface VideoEdgeSubscription
+  extends Promise<AsyncIterator<VideoEdge>>,
+  Fragmentable {
+  node: <T = VideoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateVideo {
+  count: Int;
+}
+
+export interface AggregateVideoPromise
+  extends Promise<AggregateVideo>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateVideoSubscription
+  extends Promise<AsyncIterator<AggregateVideo>>,
+  Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface VoteConnection {
+  pageInfo: PageInfo;
+  edges: VoteEdge[];
+}
+
+export interface VoteConnectionPromise
+  extends Promise<VoteConnection>,
+  Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<VoteEdge>>() => T;
+  aggregate: <T = AggregateVotePromise>() => T;
+}
+
+export interface VoteConnectionSubscription
+  extends Promise<AsyncIterator<VoteConnection>>,
+  Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<VoteEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateVoteSubscription>() => T;
+}
+
+export interface VoteEdge {
+  node: Vote;
+  cursor: String;
+}
+
+export interface VoteEdgePromise extends Promise<VoteEdge>, Fragmentable {
+  node: <T = VotePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface VoteEdgeSubscription
+  extends Promise<AsyncIterator<VoteEdge>>,
+  Fragmentable {
+  node: <T = VoteSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateVote {
+  count: Int;
+}
+
+export interface AggregateVotePromise
+  extends Promise<AggregateVote>,
+  Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateVoteSubscription
+  extends Promise<AsyncIterator<AggregateVote>>,
+  Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -328,14 +3181,202 @@ export interface BatchPayload {
 
 export interface BatchPayloadPromise
   extends Promise<BatchPayload>,
-    Fragmentable {
+  Fragmentable {
   count: () => Promise<Long>;
 }
 
 export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
+  Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface CategorySubscriptionPayload {
+  mutation: MutationType;
+  node: Category;
+  updatedFields: String[];
+  previousValues: CategoryPreviousValues;
+}
+
+export interface CategorySubscriptionPayloadPromise
+  extends Promise<CategorySubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CategoryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CategoryPreviousValuesPromise>() => T;
+}
+
+export interface CategorySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CategorySubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CategorySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CategoryPreviousValuesSubscription>() => T;
+}
+
+export interface CategoryPreviousValues {
+  id: ID_Output;
+  category?: String;
+}
+
+export interface CategoryPreviousValuesPromise
+  extends Promise<CategoryPreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  category: () => Promise<String>;
+}
+
+export interface CategoryPreviousValuesSubscription
+  extends Promise<AsyncIterator<CategoryPreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  category: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CommentSubscriptionPayload {
+  mutation: MutationType;
+  node: Comment;
+  updatedFields: String[];
+  previousValues: CommentPreviousValues;
+}
+
+export interface CommentSubscriptionPayloadPromise
+  extends Promise<CommentSubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentPreviousValuesPromise>() => T;
+}
+
+export interface CommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentPreviousValuesSubscription>() => T;
+}
+
+export interface CommentPreviousValues {
+  id: ID_Output;
+  comment: String;
+}
+
+export interface CommentPreviousValuesPromise
+  extends Promise<CommentPreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  comment: () => Promise<String>;
+}
+
+export interface CommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentPreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  comment: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ExternalResourceSubscriptionPayload {
+  mutation: MutationType;
+  node: ExternalResource;
+  updatedFields: String[];
+  previousValues: ExternalResourcePreviousValues;
+}
+
+export interface ExternalResourceSubscriptionPayloadPromise
+  extends Promise<ExternalResourceSubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ExternalResourcePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ExternalResourcePreviousValuesPromise>() => T;
+}
+
+export interface ExternalResourceSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ExternalResourceSubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ExternalResourceSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ExternalResourcePreviousValuesSubscription>() => T;
+}
+
+export interface ExternalResourcePreviousValues {
+  id: ID_Output;
+  title?: String;
+  description?: String;
+  linkURL?: String;
+  logoURL?: String;
+}
+
+export interface ExternalResourcePreviousValuesPromise
+  extends Promise<ExternalResourcePreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  linkURL: () => Promise<String>;
+  logoURL: () => Promise<String>;
+}
+
+export interface ExternalResourcePreviousValuesSubscription
+  extends Promise<AsyncIterator<ExternalResourcePreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  linkURL: () => Promise<AsyncIterator<String>>;
+  logoURL: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Review;
+  updatedFields: String[];
+  previousValues: ReviewPreviousValues;
+}
+
+export interface ReviewSubscriptionPayloadPromise
+  extends Promise<ReviewSubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReviewPreviousValuesPromise>() => T;
+}
+
+export interface ReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReviewSubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReviewPreviousValuesSubscription>() => T;
+}
+
+export interface ReviewPreviousValues {
+  id: ID_Output;
+  rating: Int;
+  review: String;
+}
+
+export interface ReviewPreviousValuesPromise
+  extends Promise<ReviewPreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  rating: () => Promise<Int>;
+  review: () => Promise<String>;
+}
+
+export interface ReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewPreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  rating: () => Promise<AsyncIterator<Int>>;
+  review: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -347,7 +3388,7 @@ export interface UserSubscriptionPayload {
 
 export interface UserSubscriptionPayloadPromise
   extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
+  Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = UserPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -356,7 +3397,7 @@ export interface UserSubscriptionPayloadPromise
 
 export interface UserSubscriptionPayloadSubscription
   extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
+  Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = UserSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -365,27 +3406,121 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
+  userName: String;
   email?: String;
   password: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
-    Fragmentable {
+  Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
+  Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+}
+
+export interface VideoSubscriptionPayload {
+  mutation: MutationType;
+  node: Video;
+  updatedFields: String[];
+  previousValues: VideoPreviousValues;
+}
+
+export interface VideoSubscriptionPayloadPromise
+  extends Promise<VideoSubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = VideoPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = VideoPreviousValuesPromise>() => T;
+}
+
+export interface VideoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<VideoSubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = VideoSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = VideoPreviousValuesSubscription>() => T;
+}
+
+export interface VideoPreviousValues {
+  id: ID_Output;
+  title?: String;
+  description?: String;
+  externalURL?: String;
+}
+
+export interface VideoPreviousValuesPromise
+  extends Promise<VideoPreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  externalURL: () => Promise<String>;
+}
+
+export interface VideoPreviousValuesSubscription
+  extends Promise<AsyncIterator<VideoPreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  externalURL: () => Promise<AsyncIterator<String>>;
+}
+
+export interface VoteSubscriptionPayload {
+  mutation: MutationType;
+  node: Vote;
+  updatedFields: String[];
+  previousValues: VotePreviousValues;
+}
+
+export interface VoteSubscriptionPayloadPromise
+  extends Promise<VoteSubscriptionPayload>,
+  Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = VotePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = VotePreviousValuesPromise>() => T;
+}
+
+export interface VoteSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<VoteSubscriptionPayload>>,
+  Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = VoteSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = VotePreviousValuesSubscription>() => T;
+}
+
+export interface VotePreviousValues {
+  id: ID_Output;
+  positive: Boolean;
+}
+
+export interface VotePreviousValuesPromise
+  extends Promise<VotePreviousValues>,
+  Fragmentable {
+  id: () => Promise<ID_Output>;
+  positive: () => Promise<Boolean>;
+}
+
+export interface VotePreviousValuesSubscription
+  extends Promise<AsyncIterator<VotePreviousValues>>,
+  Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  positive: () => Promise<AsyncIterator<Boolean>>;
 }
 
 /*
@@ -418,6 +3553,30 @@ export type Long = string;
 export const models: Model[] = [
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "Video",
+    embedded: false
+  },
+  {
+    name: "ExternalResource",
+    embedded: false
+  },
+  {
+    name: "Review",
+    embedded: false
+  },
+  {
+    name: "Comment",
+    embedded: false
+  },
+  {
+    name: "Vote",
+    embedded: false
+  },
+  {
+    name: "Category",
     embedded: false
   }
 ];

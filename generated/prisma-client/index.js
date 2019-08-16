@@ -7,6 +7,30 @@ var models = [
   {
     name: "User",
     embedded: false
+  },
+  {
+    name: "Video",
+    embedded: false
+  },
+  {
+    name: "ExternalResource",
+    embedded: false
+  },
+  {
+    name: "Review",
+    embedded: false
+  },
+  {
+    name: "Comment",
+    embedded: false
+  },
+  {
+    name: "Vote",
+    embedded: false
+  },
+  {
+    name: "Category",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
