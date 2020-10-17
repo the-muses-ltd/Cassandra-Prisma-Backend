@@ -2,7 +2,7 @@
 GraphQL (Prisma) Backend for the Cassandra Project. This API and BE system allows the CRUD of all resources on the Cassandra Database.
 
 ## Multiple Backends
-Cassandra has multiple backend systems. An admin API that only The Muses senior members are able to access, which allows the CRUD processes to maintain and grow the database of resources that is the fuel of the Cassandra project. The second is a Read only API that allows the Cassandra Frontend to allow anyone in the world access to our database, completely free of charge.
+Cassandra has multiple backend systems. An admin API that only The Muses senior members are able to access, which allows the CRUD processes to maintain and grow the database of resources that is the fuel of the Cassandra project. The second is a Read only API that allows the Cassandra Frontend or any other non-profit organitsation to allow anyone in the world access to our database, completely free of charge.
 
 
 # Cassandra Architecture
